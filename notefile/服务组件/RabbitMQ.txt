@@ -1,0 +1,26 @@
+安装： https://www.rabbitmq.com/docs/download
+
+启用管理界面：
+$ rabbitmq-plugins enable rabbitmq_management
+浏览器访问： http://localhost:15672
+默认用户名/密码均为"guest"
+rabbitmq-server的amqp默认端口为5672
+
+消息模型：https://www.rabbitmq.com/tutorials
+    简单队列（Simple Queue）：一个生产者对应一个消费者。
+    工作队列（Work Queues）：在多个消费者之间分配任务（竞争消息者模式）。
+    发布/订阅（Publish/Subscribe）：同时向多个消费者发送消息。
+    路由（Routing）：选择性接收消息。
+    主题（Topics）：基于模式(主题)接收消息。
+    远程过程调用（RPC）：请求/应答模式。
+    发布者确认（Publisher Confirms）：与发布者确认的可靠的发布。
+
+交换机（exchange）类型：
+    广播（fanout）：将一条消息广播到绑定到该交换机的所有队列上。
+    直连（direct）：将绑定的路由键完全匹配的方式路由到指定的队列上。
+    主题（topic）：和direct很类似，routingkey通过符号“.”进行分割作为路由的匹配元素，*”用来表示一个单词，“#”用来匹配任意个单词。。
+    头（headers）：不依赖路由键的匹配规则，而是根据发送的消息内容的headers属性进行匹配。
+        匹配规则x-match为all表示要所有的键值对都匹配才接受消息，any表示只需任意键值对匹配就接受消息。
+还有amq.*交换机和默认交换机（空字符串标识）。
+
+声明一个队列是幂等的，只有当它不存在时才会创建它。

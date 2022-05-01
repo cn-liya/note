@@ -1,0 +1,170 @@
+YAML是一种数据序列化语言，多用于配置文件，扩展名为.yaml或.yml。
+
+yaml使用缩进表示层级关系，缩进时不允许使用Tab键，只允许使用空格。
+缩进的空格数目不重要，只要相同层级的元素左侧对齐即可。
+#表示注释，从这个字符一直到行尾，都会被解析器忽略。
+用“---”即三个破折号表示一份内容的开始，用“...”即三个小数点表示一份内容的结束。
+
+YAML支持的数据类型：对象、数组、纯量（字符串、布尔、整数、浮点数、null、日期时间）。
+
+对象的一组键值对，使用冒号结构表示
+key: val
+对象支持flow风格写法，类似JSON
+hash: { field1: val1, field2: val2 }
+
+一组以“-”开头的数据构成一个数组
+items:
+  - a
+  - b
+数组也支持flow风格写法
+items: [a, b]
+
+纯量直接以字面量的形式表示。
+字符串默认可省略引号，如包含特殊字符(:#\)则需使用引号。
+整数支持二进制表示，浮点数支持科学计数法。
+布尔值用true和false表示。
+null用null或~表示。
+日期时间采用ISO8601格式（2002-01-02T15:04:05+08:00）。缺省时间取0点，缺省时区取UTC。
+日期时间的值不能使用引号，否则会识别为字符串。
+
+多行字符串可以使用|保留换行符，每行的缩进和行尾空白都会被去掉，而额外的缩进会被保留。
+this: |
+  Foo
+  Bar
++表示文字块末尾添加换行，-表示删除字符串末尾的换行。
+s1: |
+  Foo
+s2: |+
+  Foo
+s3: |-
+  Foo
+也可以使用>折叠换行，只有空白行才会被识别为换行，原来的换行符都会被转换成空格。
+that: >
+  Foo
+  Bar
+
+========== ========== ========== ========== ==========
+
+"gopkg.in/yaml.v3"包用于yaml数据格式的序列化和解析。
+提供了与"encoding/json"包类似的序列化反序列化方法和接口。
+
+func Marshal(in any) (out []byte, err error)
+func Unmarshal(in []byte, out any) (err error)
+
+type Marshaler interface {
+	MarshalYAML() (interface{}, error)
+}
+type Unmarshaler interface {
+	UnmarshalYAML(value *Node) error
+}
+
+func NewEncoder(w io.Writer) *Encoder 初始化一个编码器
+func (e *Encoder) SetIndent(spaces int) 设置缩进空格数
+func (e *Encoder) Encode(v any) (err error) 编码写入数据
+func (e *Encoder) Close() (err error) 写入剩余数据并关闭编码器
+
+func NewDecoder(r io.Reader) *Decoder 初始化一个解码器
+func (dec *Decoder) KnownFields(enable bool) 确保要解码的键在结构体字段中存在
+func (dec *Decoder) Decode(v any) (err error) 解码数据
+
+========== ========== ========== ========== ==========
+
+type Data struct {
+	Bool     bool
+	Int      int
+	Float    float64 `yaml:"pi"`
+	String   string
+	Content  string
+	Array    []string
+	Bytes    []byte `yaml:",flow"`
+	Map      map[string]any
+	Object   map[string]any `yaml:",flow"`
+	Duration time.Duration
+	Time     time.Time
+	Struct   Struct
+}
+type Struct struct {
+	AppID   string
+	secret  string
+	Float32 float32
+}
+
+func en() {
+	data := &Data{
+		Bool:   true,
+		Int:    1,
+		Float:  3.141592653,
+		String: "ABC",
+		Content: `xxx
+yyy
+zzz`,
+		Array: []string{"apple", "banana"},
+		Bytes: []byte{65, 66, 67},
+		Map: map[string]any{
+			"key": "max_int64",
+			"num": math.MaxInt64,
+		},
+		Object: map[string]any{
+			"key": "min_int32",
+			"num": math.MinInt32,
+		},
+		Duration: 2*time.Hour + 3*time.Minute + 4*time.Second + 5*time.Millisecond,
+		Time:     time.Date(2022, 1, 1, 13, 14, 15, 0, time.Local),
+		Struct:   Struct{AppID: "wxa", secret: "sec", Float32: math.MaxFloat32},
+	}
+	b, _ := yaml.Marshal(data)
+	os.WriteFile("output.yaml", b, 0666)
+}
+
+/*
+bool: true
+int: 1
+pi: 3.141592653
+string: ABC
+content: |-
+    xxx
+    yyy
+    zzz
+array:
+    - apple
+    - banana
+bytes: [65, 66, 67]
+map:
+    key: max_int64
+    num: 9223372036854775807
+object: {key: min_int32, num: -2147483648}
+duration: 2h3m4.005s
+time: 2022-01-01T13:14:15+08:00
+struct:
+    appid: wxa
+    float32: 3.4028235e+38
+*/
+
+func de() {
+	s := `bool: true
+int: 1
+pi: 3.141592653
+string: ABC
+content: |-
+    xxx
+    yyy
+    zzz
+array:
+    - apple
+    - banana
+bytes: [65, 66, 67]
+map:
+    key: max_int64
+    num: 9223372036854775807
+object: {key: min_int32, num: -2147483648}
+duration: 2h3m4.005s
+time: 2022-1-1
+struct:
+    appid: wxa
+    float32: 3.4028235e+38
+`
+	var result Data
+	err := yaml.Unmarshal([]byte(s), &result)
+	fmt.Println(err)
+	fmt.Printf("%+v", result) //...Time:2022-01-01 00:00:00 +0000 UTC...
+}

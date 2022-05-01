@@ -1,0 +1,25 @@
+表示状态、状况：state、status
+如果是一组明确定义好的离散对象组成的闭集合，任意时刻应该有唯一取值，用state。
+否则（包括可能未来可能扩展，临时性比较强，定义不是那么明确等等）用status。
+例如http中readyState有相对固定的有限个状态，而statusCode在扩展。
+
+list:列表, queue:队列
+config:配置, setting:设置
+points:点数, scores:分值
+last:最后的、最近的, latest:最新的、最近的
+administrator:系统超级管理员, manager:经营管理者
+
+priority 优先权
+weight 权重
+rank 地位，等级
+level 层次，水平
+
+utility 实用，公用程序
+helper 助手
+tool 工具
+
+amount 与不可数、无生命的名词连用，常用于金额
+quantity 与可数或不可数、无生命的名词连用
+number 与可数、有生命或无生命的名词连用
+count 计数（非负整数）
+sum 总和（整数或浮点数）

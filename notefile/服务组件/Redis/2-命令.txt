@@ -1,0 +1,643 @@
+========== ========== connection(22) ========== ==========
+🔻 AUTH [username] password
+	Authenticate to the server
+🔻 CLIENT CACHING <YES|NO> (v6.0.0+)
+	Instruct the server about tracking or not keys in the next request
+🔻 CLIENT GETNAME
+	Get the current connection name
+🔻 CLIENT GETREDIR (v6.0.0+)
+	Get tracking notifications redirection client ID if any
+🔻 CLIENT ID
+	Returns the client ID for the current connection
+🔻 CLIENT INFO (v6.2.0+)
+	Returns information about the current client connection.
+🔻 CLIENT KILL <ip:port|<[ID client-id]|[TYPE <NORMAL|MASTER|SLAVE|REPLICA|PUBSUB>]|[USER username]|[ADDR ip:port]|[LADDR ip:port]|[SKIPME <YES|NO>] [[ID client-id]|[TYPE <NORMAL|MASTER|SLAVE|REPLICA|PUBSUB>]|[USER username]|[ADDR ip:port]|[LADDR ip:port]|[SKIPME <YES|NO>] ...]>>
+	Kill the connection of a client
+🔻 CLIENT LIST [TYPE <NORMAL|MASTER|REPLICA|PUBSUB>] [ID client-id [client-id ...]]
+	Get the list of client connections
+🔻 CLIENT NO-EVICT <ON|OFF> (v7.0.0+)
+	Set client eviction mode for the current connection
+🔻 CLIENT PAUSE timeout [WRITE|ALL]
+	Stop processing commands from clients for some time
+🔻 CLIENT REPLY <ON|OFF|SKIP>
+	Instruct the server whether to reply to commands
+🔻 CLIENT SETNAME connection-name
+	Set the current connection name
+🔻 CLIENT TRACKING <ON|OFF> [REDIRECT client-id] [PREFIX prefix [PREFIX prefix ...]] [BCAST] [OPTIN] [OPTOUT] [NOLOOP] (v6.0.0+)
+	Enable or disable server assisted client side caching support
+🔻 CLIENT TRACKINGINFO (v6.2.0+)
+	Return information about server assisted client side caching for the current connection
+🔻 CLIENT UNBLOCK client-id [TIMEOUT|ERROR]
+	Unblock a client blocked in a blocking command from a different connection
+🔻 CLIENT UNPAUSE (v6.2.0+)
+	Resume processing of clients that were paused
+🔻 ECHO message
+	Echo the given string
+🔻 HELLO [protover [AUTH username password] [SETNAME clientname]] (v6.0.0+)
+	Handshake with Redis
+🔻 PING [message]
+	Ping the server
+🔻 QUIT
+	Close the connection
+🔻 RESET (v6.2.0+)
+	Reset the connection
+🔻 SELECT index
+	Change the selected database for the current connection
+
+========== ========== server(62) ========== ==========
+🔻 ACL CAT [categoryname] (v6.0.0+)
+	List the ACL categories or the commands inside a category
+🔻 ACL DELUSER username [username ...] (v6.0.0+)
+	Remove the specified ACL users and the associated rules
+🔻 ACL DRYRUN username command [arg [arg ...]] (v7.0.0+)
+	Returns whether the user can execute the given command without executing the command.
+🔻 ACL GENPASS [bits] (v6.0.0+)
+	Generate a pseudorandom secure password to use for ACL users
+🔻 ACL GETUSER username (v6.0.0+)
+	Get the rules for a specific ACL user
+🔻 ACL LIST (v6.0.0+)
+	List the current ACL rules in ACL config file format
+🔻 ACL LOAD (v6.0.0+)
+	Reload the ACLs from the configured ACL file
+🔻 ACL LOG [count|RESET] (v6.0.0+)
+	List latest events denied because of ACLs in place
+🔻 ACL SAVE (v6.0.0+)
+	Save the current ACL rules in the configured ACL file
+🔻 ACL SETUSER username [rule [rule ...]] (v6.0.0+)
+	Modify or create the rules for a specific ACL user
+🔻 ACL USERS (v6.0.0+)
+	List the username of all the configured ACL rules
+🔻 ACL WHOAMI (v6.0.0+)
+	Return the name of the user associated to the current connection
+🔻 BGREWRITEAOF
+	Asynchronously rewrite the append-only file
+🔻 BGSAVE [SCHEDULE]
+	Asynchronously save the dataset to disk
+🔻 COMMAND
+	Get array of Redis command details
+🔻 COMMAND COUNT
+	Get total number of Redis commands
+🔻 COMMAND DOCS [command-name [command-name ...]] (v7.0.0+)
+	Get array of specific Redis command documentation
+🔻 COMMAND GETKEYS command [arg [arg ...]]
+	Extract keys given a full Redis command
+🔻 COMMAND GETKEYSANDFLAGS command [arg [arg ...]] (v7.0.0+)
+	Extract keys and access flags given a full Redis command
+🔻 COMMAND INFO [command-name [command-name ...]]
+	Get array of specific Redis command details, or all when no argument is given.
+🔻 COMMAND LIST [FILTERBY <MODULE module-name|ACLCAT category|PATTERN pattern>] (v7.0.0+)
+	Get an array of Redis command names
+🔻 CONFIG GET parameter [parameter ...]
+	Get the values of configuration parameters
+🔻 CONFIG RESETSTAT
+	Reset the stats returned by INFO
+🔻 CONFIG REWRITE
+	Rewrite the configuration file with the in memory configuration
+🔻 CONFIG SET parameter value [parameter value ...]
+	Set configuration parameters to the given values
+🔻 DBSIZE
+	Return the number of keys in the selected database
+🔻 FAILOVER [TO host port [FORCE]] [ABORT] [TIMEOUT milliseconds] (v6.2.0+)
+	Start a coordinated failover between this server and one of its replicas.
+🔻 FLUSHALL [ASYNC|SYNC]
+	Remove all keys from all databases
+🔻 FLUSHDB [ASYNC|SYNC]
+	Remove all keys from the current database
+🔻 INFO [section [section ...]]
+	Get information and statistics about the server
+🔻 LASTSAVE
+	Get the UNIX time stamp of the last successful save to disk
+🔻 LATENCY DOCTOR
+	Return a human readable latency analysis report.
+🔻 LATENCY GRAPH event
+	Return a latency graph for the event.
+🔻 LATENCY HISTOGRAM [command [command ...]] (v7.0.0+)
+	Return the cumulative distribution of latencies of a subset of commands or all.
+🔻 LATENCY HISTORY event
+	Return timestamp-latency samples for the event.
+🔻 LATENCY LATEST
+	Return the latest latency samples for all events.
+🔻 LATENCY RESET [event [event ...]]
+	Reset latency data for one or more events.
+🔻 LOLWUT [VERSION version]
+	Display some computer art and the Redis version
+🔻 MEMORY DOCTOR
+	Outputs memory problems report
+🔻 MEMORY MALLOC-STATS
+	Show allocator internal stats
+🔻 MEMORY PURGE
+	Ask the allocator to release memory
+🔻 MEMORY STATS
+	Show memory usage details
+🔻 MEMORY USAGE key [SAMPLES count]
+	Estimate the memory usage of a key
+🔻 MODULE LIST
+	List all modules loaded by the server
+🔻 MODULE LOAD path [arg [arg ...]]
+	Load a module
+🔻 MODULE LOADEX path [CONFIG name value [CONFIG name value ...]] [ARGS args [args ...]] (v7.0.0+)
+	Load a module with extended parameters
+🔻 MODULE UNLOAD name
+	Unload a module
+🔻 MONITOR
+	Listen for all requests received by the server in real time
+🔻 PSYNC replicationid offset
+	Internal command used for replication
+🔻 REPLCONF
+	An internal command for configuring the replication stream
+🔻 REPLICAOF host port
+	Make the server a replica of another instance, or promote it as master.
+🔻 RESTORE-ASKING key ttl serialized-value [REPLACE] [ABSTTL] [IDLETIME seconds] [FREQ frequency]
+	An internal command for migrating keys in a cluster
+🔻 ROLE
+	Return the role of the instance in the context of replication
+🔻 SAVE
+	Synchronously save the dataset to disk
+🔻 SHUTDOWN [NOSAVE|SAVE] [NOW] [FORCE] [ABORT]
+	Synchronously save the dataset to disk and then shut down the server
+🔻 SLAVEOF host port
+	Make the server a replica of another instance, or promote it as master.
+🔻 SLOWLOG GET [count]
+	Get the slow log's entries
+🔻 SLOWLOG LEN
+	Get the slow log's length
+🔻 SLOWLOG RESET
+	Clear all entries from the slow log
+🔻 SWAPDB index1 index2
+	Swaps two Redis databases
+🔻 SYNC
+	Internal command used for replication
+🔻 TIME
+	Return the current server time
+
+========== ========== generic(31) ========== ==========
+🔻 COPY source destination [DB destination-db] [REPLACE] (v6.2.0+)
+	Copy a key
+🔻 DEL key [key ...]
+	Delete a key
+🔻 DUMP key
+	Return a serialized version of the value stored at the specified key.
+🔻 EXISTS key [key ...]
+	Determine if a key exists
+🔻 EXPIRE key seconds [NX|XX|GT|LT]
+	Set a key's time to live in seconds
+🔻 EXPIREAT key unix-time-seconds [NX|XX|GT|LT]
+	Set the expiration for a key as a UNIX timestamp
+🔻 EXPIRETIME key (v7.0.0+)
+	Get the expiration Unix timestamp for a key
+🔻 KEYS pattern
+	Find all keys matching the given pattern
+🔻 MIGRATE host port <key|""> destination-db timeout [COPY] [REPLACE] [AUTH password|AUTH2 username password] [KEYS key [key ...]]
+	Atomically transfer a key from a Redis instance to another one.
+🔻 MOVE key db
+	Move a key to another database
+🔻 OBJECT ENCODING key
+	Inspect the internal encoding of a Redis object
+🔻 OBJECT FREQ key
+	Get the logarithmic access frequency counter of a Redis object
+🔻 OBJECT IDLETIME key
+	Get the time since a Redis object was last accessed
+🔻 OBJECT REFCOUNT key
+	Get the number of references to the value of the key
+🔻 PERSIST key
+	Remove the expiration from a key
+🔻 PEXPIRE key milliseconds [NX|XX|GT|LT]
+	Set a key's time to live in milliseconds
+🔻 PEXPIREAT key unix-time-milliseconds [NX|XX|GT|LT]
+	Set the expiration for a key as a UNIX timestamp specified in milliseconds
+🔻 PEXPIRETIME key (v7.0.0+)
+	Get the expiration Unix timestamp for a key in milliseconds
+🔻 PTTL key
+	Get the time to live for a key in milliseconds
+🔻 RANDOMKEY
+	Return a random key from the keyspace
+🔻 RENAME key newkey
+	Rename a key
+🔻 RENAMENX key newkey
+	Rename a key, only if the new key does not exist
+🔻 RESTORE key ttl serialized-value [REPLACE] [ABSTTL] [IDLETIME seconds] [FREQ frequency]
+	Create a key using the provided serialized value, previously obtained using DUMP.
+🔻 SCAN cursor [MATCH pattern] [COUNT count] [TYPE type]
+	Incrementally iterate the keys space
+🔻 SORT key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC|DESC] [ALPHA] [STORE destination]
+	Sort the elements in a list, set or sorted set
+🔻 SORT_RO key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC|DESC] [ALPHA] (v7.0.0+)
+	Sort the elements in a list, set or sorted set. Read-only variant of SORT.
+🔻 TOUCH key [key ...]
+	Alters the last access time of a key(s). Returns the number of existing keys specified.
+🔻 TTL key
+	Get the time to live for a key in seconds
+🔻 TYPE key
+	Determine the type stored at key
+🔻 UNLINK key [key ...]
+	Delete a key asynchronously in another thread. Otherwise it is just as DEL, but non blocking.
+🔻 WAIT numreplicas timeout
+	Wait for the synchronous replication of all the write commands sent in the context of the current connection
+
+========== ========== string(22) ========== ==========
+🔻 APPEND key value
+	Append a value to a key
+🔻 DECR key
+	Decrement the integer value of a key by one
+🔻 DECRBY key decrement
+	Decrement the integer value of a key by the given number
+🔻 GET key
+	Get the value of a key
+🔻 GETDEL key (v6.2.0+)
+	Get the value of a key and delete the key
+🔻 GETEX key [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|PERSIST] (v6.2.0+)
+	Get the value of a key and optionally set its expiration
+🔻 GETRANGE key start end
+	Get a substring of the string stored at a key
+🔻 GETSET key value
+	Set the string value of a key and return its old value
+🔻 INCR key
+	Increment the integer value of a key by one
+🔻 INCRBY key increment
+	Increment the integer value of a key by the given amount
+🔻 INCRBYFLOAT key increment
+	Increment the float value of a key by the given amount
+🔻 LCS key1 key2 [LEN] [IDX] [MINMATCHLEN min-match-len] [WITHMATCHLEN] (v7.0.0+)
+	Find longest common substring
+🔻 MGET key [key ...]
+	Get the values of all the given keys
+🔻 MSET key value [key value ...]
+	Set multiple keys to multiple values
+🔻 MSETNX key value [key value ...]
+	Set multiple keys to multiple values, only if none of the keys exist
+🔻 PSETEX key milliseconds value
+	Set the value and expiration in milliseconds of a key
+🔻 SET key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]
+	Set the string value of a key
+🔻 SETEX key seconds value
+	Set the value and expiration of a key
+🔻 SETNX key value
+	Set the value of a key, only if the key does not exist
+🔻 SETRANGE key offset value
+	Overwrite part of a string at key starting at the specified offset
+🔻 STRLEN key
+	Get the length of the value stored in a key
+🔻 SUBSTR key start end
+	Get a substring of the string stored at a key
+
+========== ========== bitmap(7) ========== ==========
+🔻 BITCOUNT key [start end [BYTE|BIT]]
+	Count set bits in a string
+🔻 BITFIELD key [GET encoding offset|[OVERFLOW <WRAP|SAT|FAIL>] <SET encoding offset value|INCRBY encoding offset increment> [GET encoding offset|[OVERFLOW <WRAP|SAT|FAIL>] <SET encoding offset value|INCRBY encoding offset increment> ...]]
+	Perform arbitrary bitfield integer operations on strings
+🔻 BITFIELD_RO key [GET encoding offset [GET encoding offset ...]] (v6.0.0+)
+	Perform arbitrary bitfield integer operations on strings. Read-only variant of BITFIELD
+🔻 BITOP <AND|OR|XOR|NOT> destkey key [key ...]
+	Perform bitwise operations between strings
+🔻 BITPOS key bit [start [end [BYTE|BIT]]]
+	Find first bit set or clear in a string
+🔻 GETBIT key offset
+	Returns the bit value at offset in the string value stored at key
+🔻 SETBIT key offset value
+	Sets or clears the bit at offset in the string value stored at key
+
+========== ========== hash(16) ========== ==========
+🔻 HDEL key field [field ...]
+	Delete one or more hash fields
+🔻 HEXISTS key field
+	Determine if a hash field exists
+🔻 HGET key field
+	Get the value of a hash field
+🔻 HGETALL key
+	Get all the fields and values in a hash
+🔻 HINCRBY key field increment
+	Increment the integer value of a hash field by the given number
+🔻 HINCRBYFLOAT key field increment
+	Increment the float value of a hash field by the given amount
+🔻 HKEYS key
+	Get all the fields in a hash
+🔻 HLEN key
+	Get the number of fields in a hash
+🔻 HMGET key field [field ...]
+	Get the values of all the given hash fields
+🔻 HMSET key field value [field value ...]
+	Set multiple hash fields to multiple values
+🔻 HRANDFIELD key [count [WITHVALUES]] (v6.2.0+)
+	Get one or multiple random fields from a hash
+🔻 HSCAN key cursor [MATCH pattern] [COUNT count]
+	Incrementally iterate hash fields and associated values
+🔻 HSET key field value [field value ...]
+	Set the string value of a hash field
+🔻 HSETNX key field value
+	Set the value of a hash field, only if the field does not exist
+🔻 HSTRLEN key field
+	Get the length of the value of a hash field
+🔻 HVALS key
+	Get all the values in a hash
+
+========== ========== list(22) ========== ==========
+🔻 BLMOVE source destination <LEFT|RIGHT> <LEFT|RIGHT> timeout (v6.2.0+)
+	Pop an element from a list, push it to another list and return it; or block until one is available
+🔻 BLMPOP timeout numkeys key [key ...] <LEFT|RIGHT> [COUNT count] (v7.0.0+)
+	Pop elements from a list, or block until one is available
+🔻 BLPOP key [key ...] timeout
+	Remove and get the first element in a list, or block until one is available
+🔻 BRPOP key [key ...] timeout
+	Remove and get the last element in a list, or block until one is available
+🔻 BRPOPLPUSH source destination timeout
+	Pop an element from a list, push it to another list and return it; or block until one is available
+🔻 LINDEX key index
+	Get an element from a list by its index
+🔻 LINSERT key <BEFORE|AFTER> pivot element
+	Insert an element before or after another element in a list
+🔻 LLEN key
+	Get the length of a list
+🔻 LMOVE source destination <LEFT|RIGHT> <LEFT|RIGHT> (v6.2.0+)
+	Pop an element from a list, push it to another list and return it
+🔻 LMPOP numkeys key [key ...] <LEFT|RIGHT> [COUNT count] (v7.0.0+)
+	Pop elements from a list
+🔻 LPOP key [count]
+	Remove and get the first elements in a list
+🔻 LPOS key element [RANK rank] [COUNT num-matches] [MAXLEN len] (v6.0.6+)
+	Return the index of matching elements on a list
+🔻 LPUSH key element [element ...]
+	Prepend one or multiple elements to a list
+🔻 LPUSHX key element [element ...]
+	Prepend an element to a list, only if the list exists
+🔻 LRANGE key start stop
+	Get a range of elements from a list
+🔻 LREM key count element
+	Remove elements from a list
+🔻 LSET key index element
+	Set the value of an element in a list by its index
+🔻 LTRIM key start stop
+	Trim a list to the specified range
+🔻 RPOP key [count]
+	Remove and get the last elements in a list
+🔻 RPOPLPUSH source destination
+	Remove the last element in a list, prepend it to another list and return it
+🔻 RPUSH key element [element ...]
+	Append one or multiple elements to a list
+🔻 RPUSHX key element [element ...]
+	Append an element to a list, only if the list exists
+
+========== ========== set(17) ========== ==========
+🔻 SADD key member [member ...]
+	Add one or more members to a set
+🔻 SCARD key
+	Get the number of members in a set
+🔻 SDIFF key [key ...]
+	Subtract multiple sets
+🔻 SDIFFSTORE destination key [key ...]
+	Subtract multiple sets and store the resulting set in a key
+🔻 SINTER key [key ...]
+	Intersect multiple sets
+🔻 SINTERCARD numkeys key [key ...] [LIMIT limit] (v7.0.0+)
+	Intersect multiple sets and return the cardinality of the result
+🔻 SINTERSTORE destination key [key ...]
+	Intersect multiple sets and store the resulting set in a key
+🔻 SISMEMBER key member
+	Determine if a given value is a member of a set
+🔻 SMEMBERS key
+	Get all the members in a set
+🔻 SMISMEMBER key member [member ...] (v6.2.0+)
+	Returns the membership associated with the given elements for a set
+🔻 SMOVE source destination member
+	Move a member from one set to another
+🔻 SPOP key [count]
+	Remove and return one or multiple random members from a set
+🔻 SRANDMEMBER key [count]
+	Get one or multiple random members from a set
+🔻 SREM key member [member ...]
+	Remove one or more members from a set
+🔻 SSCAN key cursor [MATCH pattern] [COUNT count]
+	Incrementally iterate Set elements
+🔻 SUNION key [key ...]
+	Add multiple sets
+🔻 SUNIONSTORE destination key [key ...]
+	Add multiple sets and store the resulting set in a key
+
+========== ========== sorted-set(35) ========== ==========
+🔻 BZMPOP timeout numkeys key [key ...] <MIN|MAX> [COUNT count] (v7.0.0+)
+	Remove and return members with scores in a sorted set or block until one is available
+🔻 BZPOPMAX key [key ...] timeout
+	Remove and return the member with the highest score from one or more sorted sets, or block until one is available
+🔻 BZPOPMIN key [key ...] timeout
+	Remove and return the member with the lowest score from one or more sorted sets, or block until one is available
+🔻 ZADD key [NX|XX] [GT|LT] [CH] [INCR] score member [score member ...]
+	Add one or more members to a sorted set, or update its score if it already exists
+🔻 ZCARD key
+	Get the number of members in a sorted set
+🔻 ZCOUNT key min max
+	Count the members in a sorted set with scores within the given values
+🔻 ZDIFF numkeys key [key ...] [WITHSCORES] (v6.2.0+)
+	Subtract multiple sorted sets
+🔻 ZDIFFSTORE destination numkeys key [key ...] (v6.2.0+)
+	Subtract multiple sorted sets and store the resulting sorted set in a new key
+🔻 ZINCRBY key increment member
+	Increment the score of a member in a sorted set
+🔻 ZINTER numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE <SUM|MIN|MAX>] [WITHSCORES] (v6.2.0+)
+	Intersect multiple sorted sets
+🔻 ZINTERCARD numkeys key [key ...] [LIMIT limit] (v7.0.0+)
+	Intersect multiple sorted sets and return the cardinality of the result
+🔻 ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE <SUM|MIN|MAX>]
+	Intersect multiple sorted sets and store the resulting sorted set in a new key
+🔻 ZLEXCOUNT key min max
+	Count the number of members in a sorted set between a given lexicographical range
+🔻 ZMPOP numkeys key [key ...] <MIN|MAX> [COUNT count] (v7.0.0+)
+	Remove and return members with scores in a sorted set
+🔻 ZMSCORE key member [member ...] (v6.2.0+)
+	Get the score associated with the given members in a sorted set
+🔻 ZPOPMAX key [count]
+	Remove and return members with the highest scores in a sorted set
+🔻 ZPOPMIN key [count]
+	Remove and return members with the lowest scores in a sorted set
+🔻 ZRANDMEMBER key [count [WITHSCORES]] (v6.2.0+)
+	Get one or multiple random elements from a sorted set
+🔻 ZRANGE key start stop [BYSCORE|BYLEX] [REV] [LIMIT offset count] [WITHSCORES]
+	Return a range of members in a sorted set
+🔻 ZRANGEBYLEX key min max [LIMIT offset count]
+	Return a range of members in a sorted set, by lexicographical range
+🔻 ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]
+	Return a range of members in a sorted set, by score
+🔻 ZRANGESTORE dst src min max [BYSCORE|BYLEX] [REV] [LIMIT offset count] (v6.2.0+)
+	Store a range of members from sorted set into another key
+🔻 ZRANK key member [WITHSCORE]
+	Determine the index of a member in a sorted set
+🔻 ZREM key member [member ...]
+	Remove one or more members from a sorted set
+🔻 ZREMRANGEBYLEX key min max
+	Remove all members in a sorted set between the given lexicographical range
+🔻 ZREMRANGEBYRANK key start stop
+	Remove all members in a sorted set within the given indexes
+🔻 ZREMRANGEBYSCORE key min max
+	Remove all members in a sorted set within the given scores
+🔻 ZREVRANGE key start stop [WITHSCORES]
+	Return a range of members in a sorted set, by index, with scores ordered from high to low
+🔻 ZREVRANGEBYLEX key max min [LIMIT offset count]
+	Return a range of members in a sorted set, by lexicographical range, ordered from higher to lower strings.
+🔻 ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]
+	Return a range of members in a sorted set, by score, with scores ordered from high to low
+🔻 ZREVRANK key member [WITHSCORE]
+	Determine the index of a member in a sorted set, with scores ordered from high to low
+🔻 ZSCAN key cursor [MATCH pattern] [COUNT count]
+	Incrementally iterate sorted sets elements and associated scores
+🔻 ZSCORE key member
+	Get the score associated with the given member in a sorted set
+🔻 ZUNION numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE <SUM|MIN|MAX>] [WITHSCORES] (v6.2.0+)
+	Add multiple sorted sets
+🔻 ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE <SUM|MIN|MAX>]
+	Add multiple sorted sets and store the resulting sorted set in a new key
+
+========== ========== geo(10) ========== ==========
+🔻 GEOADD key [NX|XX] [CH] longitude latitude member [longitude latitude member ...]
+	Add one or more geospatial items in the geospatial index represented using a sorted set
+🔻 GEODIST key member1 member2 [M|KM|FT|MI]
+	Returns the distance between two members of a geospatial index
+🔻 GEOHASH key [member [member ...]]
+	Returns members of a geospatial index as standard geohash strings
+🔻 GEOPOS key [member [member ...]]
+	Returns longitude and latitude of members of a geospatial index
+🔻 GEORADIUS key longitude latitude radius <M|KM|FT|MI> [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count [ANY]] [ASC|DESC] [STORE key] [STOREDIST key]
+	Query a sorted set representing a geospatial index to fetch members matching a given maximum distance from a point
+🔻 GEORADIUS_RO key longitude latitude radius <M|KM|FT|MI> [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count [ANY]] [ASC|DESC]
+	A read-only variant for GEORADIUS
+🔻 GEORADIUSBYMEMBER key member radius <M|KM|FT|MI> [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count [ANY]] [ASC|DESC] [STORE key] [STOREDIST key]
+	Query a sorted set representing a geospatial index to fetch members matching a given maximum distance from a member
+🔻 GEORADIUSBYMEMBER_RO key member radius <M|KM|FT|MI> [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count [ANY]] [ASC|DESC]
+	A read-only variant for GEORADIUSBYMEMBER
+🔻 GEOSEARCH key <FROMMEMBER member|FROMLONLAT longitude latitude> <BYRADIUS radius <M|KM|FT|MI>|BYBOX width height <M|KM|FT|MI>> [ASC|DESC] [COUNT count [ANY]] [WITHCOORD] [WITHDIST] [WITHHASH] (v6.2.0+)
+	Query a sorted set representing a geospatial index to fetch members inside an area of a box or a circle.
+🔻 GEOSEARCHSTORE destination source <FROMMEMBER member|FROMLONLAT longitude latitude> <BYRADIUS radius <M|KM|FT|MI>|BYBOX width height <M|KM|FT|MI>> [ASC|DESC] [COUNT count [ANY]] [STOREDIST] (v6.2.0+)
+	Query a sorted set representing a geospatial index to fetch members inside an area of a box or a circle, and store the result in another key.
+
+========== ========== hyperloglog(5) ========== ==========
+🔻 PFADD key [element [element ...]]
+	Adds the specified elements to the specified HyperLogLog.
+🔻 PFCOUNT key [key ...]
+	Return the approximated cardinality of the set(s) observed by the HyperLogLog at key(s).
+🔻 PFDEBUG subcommand key
+	Internal commands for debugging HyperLogLog values
+🔻 PFMERGE destkey [sourcekey [sourcekey ...]]
+	Merge N different HyperLogLogs into a single one.
+🔻 PFSELFTEST
+	An internal command for testing HyperLogLog values
+
+========== ========== stream(21) ========== ==========
+🔻 XACK key group id [id ...]
+	Marks a pending message as correctly processed, effectively removing it from the pending entries list of the consumer group. Return value of the command is the number of messages successfully acknowledged, that is, the IDs we were actually able to resolve in the PEL.
+🔻 XADD key [NOMKSTREAM] [<MAXLEN|MINID> [=|~] threshold [LIMIT count]] <*|id> field value [field value ...]
+	Appends a new entry to a stream
+🔻 XAUTOCLAIM key group consumer min-idle-time start [COUNT count] [JUSTID] (v6.2.0+)
+	Changes (or acquires) ownership of messages in a consumer group, as if the messages were delivered to the specified consumer.
+🔻 XCLAIM key group consumer min-idle-time id [id ...] [IDLE ms] [TIME unix-time-milliseconds] [RETRYCOUNT count] [FORCE] [JUSTID] [LASTID lastid]
+	Changes (or acquires) ownership of a message in a consumer group, as if the message was delivered to the specified consumer.
+🔻 XDEL key id [id ...]
+	Removes the specified entries from the stream. Returns the number of items actually deleted, that may be different from the number of IDs passed in case certain IDs do not exist.
+🔻 XGROUP CREATE key group <id|$> [MKSTREAM] [ENTRIESREAD entries-read]
+	Create a consumer group.
+🔻 XGROUP CREATECONSUMER key group consumer (v6.2.0+)
+	Create a consumer in a consumer group.
+🔻 XGROUP DELCONSUMER key group consumer
+	Delete a consumer from a consumer group.
+🔻 XGROUP DESTROY key group
+	Destroy a consumer group.
+🔻 XGROUP SETID key group <id|$> [ENTRIESREAD entries-read]
+	Set a consumer group to an arbitrary last delivered ID value.
+🔻 XINFO CONSUMERS key group
+	List the consumers in a consumer group
+🔻 XINFO GROUPS key
+	List the consumer groups of a stream
+🔻 XINFO STREAM key [FULL [COUNT count]]
+	Get information about a stream
+🔻 XLEN key
+	Return the number of entries in a stream
+🔻 XPENDING key group [[IDLE min-idle-time] start end count [consumer]]
+	Return information and entries from a stream consumer group pending entries list, that are messages fetched but never acknowledged.
+🔻 XRANGE key start end [COUNT count]
+	Return a range of elements in a stream, with IDs matching the specified IDs interval
+🔻 XREAD [COUNT count] [BLOCK milliseconds] STREAMS key [key ...] id [id ...]
+	Return never seen elements in multiple streams, with IDs greater than the ones reported by the caller for each stream. Can block.
+🔻 XREADGROUP GROUP group consumer [COUNT count] [BLOCK milliseconds] [NOACK] STREAMS key [key ...] id [id ...]
+	Return new entries from a stream using a consumer group, or access the history of the pending entries for a given consumer. Can block.
+🔻 XREVRANGE key end start [COUNT count]
+	Return a range of elements in a stream, with IDs matching the specified IDs interval, in reverse order (from greater to smaller IDs) compared to XRANGE
+🔻 XSETID key last-id [ENTRIESADDED entries-added] [MAXDELETEDID max-deleted-id]
+	An internal command for replicating stream values
+🔻 XTRIM key <MAXLEN|MINID> [=|~] threshold [LIMIT count]
+	Trims the stream to (approximately if '~' is passed) a certain size
+
+========== ========== pubsub(13) ========== ==========
+🔻 PSUBSCRIBE pattern [pattern ...]
+	Listen for messages published to channels matching the given patterns
+🔻 PUBLISH channel message
+	Post a message to a channel
+🔻 PUBSUB CHANNELS [pattern]
+	List active channels
+🔻 PUBSUB NUMPAT
+	Get the count of unique patterns pattern subscriptions
+🔻 PUBSUB NUMSUB [channel [channel ...]]
+	Get the count of subscribers for channels
+🔻 PUBSUB SHARDCHANNELS [pattern] (v7.0.0+)
+	List active shard channels
+🔻 PUBSUB SHARDNUMSUB [shardchannel [shardchannel ...]] (v7.0.0+)
+	Get the count of subscribers for shard channels
+🔻 PUNSUBSCRIBE [pattern [pattern ...]]
+	Stop listening for messages posted to channels matching the given patterns
+🔻 SPUBLISH shardchannel message (v7.0.0+)
+	Post a message to a shard channel
+🔻 SSUBSCRIBE shardchannel [shardchannel ...] (v7.0.0+)
+	Listen for messages published to the given shard channels
+🔻 SUBSCRIBE channel [channel ...]
+	Listen for messages published to the given channels
+🔻 SUNSUBSCRIBE [shardchannel [shardchannel ...]] (v7.0.0+)
+	Stop listening for messages posted to the given shard channels
+🔻 UNSUBSCRIBE [channel [channel ...]]
+	Stop listening for messages posted to the given channels
+
+========== ========== transactions(5) ========== ==========
+🔻 DISCARD
+	Discard all commands issued after MULTI
+🔻 EXEC
+	Execute all commands issued after MULTI
+🔻 MULTI
+	Mark the start of a transaction block
+🔻 UNWATCH
+	Forget about all watched keys
+🔻 WATCH key [key ...]
+	Watch the given keys to determine execution of the MULTI/EXEC block
+
+========== ========== scripting(19) ========== ==========
+🔻 EVAL script numkeys [key [key ...]] [arg [arg ...]]
+	Execute a Lua script server side
+🔻 EVAL_RO script numkeys [key [key ...]] [arg [arg ...]] (v7.0.0+)
+	Execute a read-only Lua script server side
+🔻 EVALSHA sha1 numkeys [key [key ...]] [arg [arg ...]]
+	Execute a Lua script server side
+🔻 EVALSHA_RO sha1 numkeys [key [key ...]] [arg [arg ...]] (v7.0.0+)
+	Execute a read-only Lua script server side
+🔻 FCALL function numkeys [key [key ...]] [arg [arg ...]] (v7.0.0+)
+	Invoke a function
+🔻 FCALL_RO function numkeys [key [key ...]] [arg [arg ...]] (v7.0.0+)
+	Invoke a read-only function
+🔻 FUNCTION DELETE library-name (v7.0.0+)
+	Delete a function by name
+🔻 FUNCTION DUMP (v7.0.0+)
+	Dump all functions into a serialized binary payload
+🔻 FUNCTION FLUSH [ASYNC|SYNC] (v7.0.0+)
+	Deleting all functions
+🔻 FUNCTION KILL (v7.0.0+)
+	Kill the function currently in execution.
+🔻 FUNCTION LIST [LIBRARYNAME library-name-pattern] [WITHCODE] (v7.0.0+)
+	List information about all the functions
+🔻 FUNCTION LOAD [REPLACE] function-code (v7.0.0+)
+	Create a function with the given arguments (name, code, description)
+🔻 FUNCTION RESTORE serialized-value [FLUSH|APPEND|REPLACE] (v7.0.0+)
+	Restore all the functions on the given payload
+🔻 FUNCTION STATS (v7.0.0+)
+	Return information about the function currently running (name, description, duration)
+🔻 SCRIPT DEBUG <YES|SYNC|NO>
+	Set the debug mode for executed scripts.
+🔻 SCRIPT EXISTS sha1 [sha1 ...]
+	Check existence of scripts in the script cache.
+🔻 SCRIPT FLUSH [ASYNC|SYNC]
+	Remove all the scripts from the script cache.
+🔻 SCRIPT KILL
+	Kill the script currently in execution.
+🔻 SCRIPT LOAD script
+	Load the specified Lua script into the script cache.
